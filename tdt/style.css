@@ -195,28 +195,107 @@ body {
 }
 
 /* --- Khung Dòng Thời Gian (Timeline) --- */
-.section-timeline {
-    padding: 80px 0;
-    background-color: #f1f5f9;
-}
+ .timeline {
+            position: relative;
+            max-width: 800px;
+            padding: 1rem;
+        }
 
-.timeline-wrapper {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding-left: 30px;
-    border-left: 3px solid #cbd5e1;
-}
+        /* Đường trục chính giữa */
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #b31d1d;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
 
-.timeline-item {
-    position: relative;
-    margin-bottom: 40px;
-    transition: all 0.6s ease-out;
-}
+        /* Khung chứa từng sự kiện */
+        .container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
 
-.timeline-item:last-child {
-    margin-bottom: 0;
-}
+        /* Dấu chấm tròn trên đường trục */
+        .container::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background-color: #fff;
+            border: 4px solid #ff9800;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        /* Đẩy các hộp bên trái và bên phải */
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        /* Đổi hướng dấu chấm cho hộp bên phải */
+        .right::after {
+            left: -8px;
+        }
+
+        /* Thẻ nội dung bên trong */
+        .content {
+            padding: 20px;
+            background-color: #fff;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Định dạng thời gian */
+        .date {
+            font-weight: bold;
+            color: #b31d1d;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Định dạng văn bản quan trọng */
+        .content strong {
+            color: #0056b3;
+        }
+
+        /* Tối ưu giao diện cho Điện thoại (Màn hình nhỏ hơn 768px) */
+        @media screen and (max-width: 768px) {
+            /* Chuyển đường trục sang bên trái */
+            .timeline::after {
+                left: 31px;
+            }
+
+            /* Đổi các hộp thành toàn màn hình */
+            .container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            /* Đưa tất cả về bên trái */
+            .container::after {
+                left: 23px;
+                right: auto;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
 
 /* Nút chấm tròn trên trục */
 .timeline-item::before {
